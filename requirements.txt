@@ -1,0 +1,12 @@
+ray
+pandas==1.5.3
+scikit-learn
+matplotlib
+seaborn
+xgboost
+ray
+xgboost_ray
+ray[train]
+ipywidgets
+mlflow
+hyperopt
