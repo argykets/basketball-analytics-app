@@ -13,7 +13,7 @@ These instructions will guide you on setting up the project on your local machin
 Before you begin, ensure you have the following installed:
 
 - [Anaconda](https://www.anaconda.com/products/individual) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
-- Python 3.10.11
+- Python 3.10.13
 
 ### Installation
 
