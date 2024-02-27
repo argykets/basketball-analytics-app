@@ -10,3 +10,4 @@ ray[train]
 ipywidgets
 mlflow
 hyperopt
+typer[all]

@@ -1,0 +1,20 @@
+{
+  "timestamp": "February 27, 2024 02:05:23 PM",
+  "params": [
+    {
+      "params.max_depth": "2",
+      "params.min_child_weight": "0",
+      "params.learning_rate": "0.001",
+      "params.n_estimators": "869",
+      "params.gamma": "0.7920481493958381"
+    }
+  ],
+  "metrics": [
+    {
+      "metrics.accuracy": 0.3830327164831733,
+      "metrics.precision": 0.3618913857677903,
+      "metrics.recall": 0.16525333143305065,
+      "metrics.f1 score": 0.22689692285113253
+    }
+  ]
+}
