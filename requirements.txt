@@ -13,3 +13,8 @@ hyperopt
 typer[all]
 fastapi
 uvicorn[standard]
+black
+black[jupyter]
+flake8
+isort
+pre-commit
