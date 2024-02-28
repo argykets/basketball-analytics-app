@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 import warnings
+import json
 
 warnings.filterwarnings("ignore")
 
@@ -31,3 +32,12 @@ def preprocess(df):
     X = df.drop(columns='SHOT_RESULT').values
     y = df['SHOT_RESULT'].values
     return X, y
+
+def convert_data_to_features(data):
+    shot_clock = data.shot_clock
+    dribbles = data.dribbles
+    touch_time = data.touch_time
+    shot_dist = data.shot_dist
+    pts_type = data.pts_type
+    close_def_dist = data.close_def_dist
+    return shot_clock, dribbles, touch_time, shot_dist, pts_type, close_def_dist

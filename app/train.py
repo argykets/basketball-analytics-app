@@ -3,7 +3,7 @@ import typer
 import json
 from typing_extensions import Annotated
 import xgboost as xgb
-from config import logger
+from config import logger, DATASET_LOC
 import utils
 import os
 
@@ -12,10 +12,9 @@ from data import load_data, stratify_split, preprocess
 app = typer.Typer()
 
 @app.command()
-def train_model(dataset_loc: Annotated[str, typer.Option()],
-                train_config: Annotated[str, typer.Option()] = None,
+def train_model(train_config: Annotated[str, typer.Option()] = None,
                 save_path: Annotated[str, typer.Option()] = "saved_models/xgb_cls.pkl"):
-    df = load_data(dataset_loc)
+    df = load_data(DATASET_LOC)
     train_df, _ = stratify_split(df, df.SHOT_RESULT, 0.2)
     X_train, y_train = preprocess(train_df)
 

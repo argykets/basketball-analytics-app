@@ -10,18 +10,17 @@ from typing_extensions import Annotated
 import warnings
 import datetime
 import json
-from config import logger
+from config import logger, DATASET_LOC
 
 warnings.filterwarnings("ignore")
 
 app = typer.Typer()
 
 @app.command()
-def tune_model(dataset_loc: Annotated[str, typer.Option()] = None,
-               experiment_name: Annotated[str, typer.Option()] = 'tune-shot-predictor',
+def tune_model(experiment_name: Annotated[str, typer.Option()] = 'tune-shot-predictor',
                results_filepath: Annotated[str, typer.Option()] = 'results/tuning_results.json'
                ):
-    df = load_data(dataset_loc)
+    df = load_data(DATASET_LOC)
     train_df, val_df = stratify_split(df, df.SHOT_RESULT, 0.2)
     X_train, y_train = preprocess(train_df)
     X_val, y_val = preprocess(val_df)

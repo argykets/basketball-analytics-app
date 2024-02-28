@@ -11,3 +11,5 @@ ipywidgets
 mlflow
 hyperopt
 typer[all]
+fastapi
+uvicorn[standard]

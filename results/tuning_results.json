@@ -1,20 +1,20 @@
 {
-  "timestamp": "February 27, 2024 02:05:23 PM",
+  "timestamp": "February 28, 2024 10:58:02 AM",
   "params": [
     {
       "params.max_depth": "2",
-      "params.min_child_weight": "0",
-      "params.learning_rate": "0.001",
-      "params.n_estimators": "869",
-      "params.gamma": "0.7920481493958381"
+      "params.min_child_weight": "3",
+      "params.learning_rate": "0.0001",
+      "params.n_estimators": "283",
+      "params.gamma": "2.184197824553446"
     }
   ],
   "metrics": [
     {
-      "metrics.accuracy": 0.3830327164831733,
-      "metrics.precision": 0.3618913857677903,
-      "metrics.recall": 0.16525333143305065,
-      "metrics.f1 score": 0.22689692285113253
+      "metrics.accuracy": 0.45213555087061763,
+      "metrics.precision": 0.0,
+      "metrics.recall": 0.0,
+      "metrics.f1 score": 0.0
     }
   ]
 }
