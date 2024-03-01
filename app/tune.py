@@ -27,7 +27,13 @@ app = typer.Typer()
 def tune_model(
     experiment_name: Annotated[str, typer.Option()] = "tune-shot-predictor",
     results_filepath: Annotated[str, typer.Option()] = "results/tuning_results.json",
-):
+) -> None:
+    """Hyperparameter tuning
+
+    Args:
+        experiment_name (Annotated[str, typer.Option, optional): Mlflow experiment name. Defaults to "tune-shot-predictor".
+        results_filepath (Annotated[str, typer.Option, optional): Filepath to save tuning results. Defaults to "results/tuning_results.json".
+    """
     df = load_data(DATASET_LOC)
     train_df, val_df = stratify_split(df, df.SHOT_RESULT, 0.2)
     X_train, y_train = preprocess(train_df)
@@ -46,7 +52,7 @@ def tune_model(
     }
 
     # Define the objective function
-    def objective(params):
+    def objective(params) -> dict:
         with mlflow.start_run():
 
             # Train model

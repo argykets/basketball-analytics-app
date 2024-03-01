@@ -1,30 +1,66 @@
 import warnings
 
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
+from typing import Tuple
 
 warnings.filterwarnings("ignore")
 
 
-def load_data(dataset_loc):
+def load_data(dataset_loc: str) -> pd.DataFrame:
+    """Loads the data
+
+    Args:
+        dataset_loc (str): Dataset filepath
+
+    Returns:
+        pd.DataFrame: Pandas dataframe
+    """
     df = pd.read_csv(dataset_loc)
     return df
 
 
-def stratify_split(df, stratify, test_size, seed=1234):
-    # Split dataset
+def stratify_split(df: pd.DataFrame, stratify: str, test_size: float, seed: int = 1234) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """Splits data to train and val sets
+
+    Args:
+        df (pd.DataFrame): Input data
+        stratify (str): Column name of target variable
+        test_size (float): Proportion of data
+        seed (int, optional): Random seed. Defaults to 1234.
+
+    Returns:
+        Tuple[pd.DataFrame, pd.DataFrame]: Train and val dataframes
+    """
     train_df, val_df = train_test_split(df, stratify=stratify, test_size=test_size, random_state=seed)
     return train_df, val_df
 
 
-def encode_categorical(df, column_name):
+def encode_categorical(df: pd.DataFrame, column_name: str) -> dict:
+    """Encodes categorical features
+
+    Args:
+        df (pd.DataFrame): Input dataframe
+        column_name (str): Name of categorical column
+
+    Returns:
+        dict: Mapping dictionary
+    """
     categories = df[column_name].unique().tolist()
     category_to_index = {pt_type: i for i, pt_type in enumerate(categories)}
     return category_to_index
 
 
-def preprocess(df):
-    """Preprocess the data"""
+def preprocess(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
+    """Preprocess input data
+
+    Args:
+        df (pd.DataFrame): Raw data
+
+    Returns:
+        Tuple[np.ndarray, np.ndarray]: X and y instances
+    """
     df = df[["SHOT_CLOCK", "DRIBBLES", "TOUCH_TIME", "SHOT_DIST", "PTS_TYPE", "CLOSE_DEF_DIST", "SHOT_RESULT"]]
     df.loc[:, "SHOT_CLOCK"] = df["SHOT_CLOCK"].fillna(0.0)
     pts_type_to_index = encode_categorical(df, column_name="PTS_TYPE")
@@ -36,7 +72,15 @@ def preprocess(df):
     return X, y
 
 
-def convert_data_to_features(data):
+def convert_data_to_features(data: dict) ->Tuple[float, int, float, float, int, float]:
+    """Convert input dict to Tuple of features
+
+    Args:
+        data (dict): Request dict
+
+    Returns:
+        Tuple[float, int, float, float, int, float]: _description_
+    """
     shot_clock = data.shot_clock
     dribbles = data.dribbles
     touch_time = data.touch_time

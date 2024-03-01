@@ -13,7 +13,14 @@ app = typer.Typer()
 
 
 @app.command()
-def train_model(train_config: Annotated[str, typer.Option()] = None, save_path: Annotated[str, typer.Option()] = "saved_models/xgb_cls.pkl"):
+def train_model(train_config: Annotated[str, typer.Option()] = None,
+                 save_path: Annotated[str, typer.Option()] = "saved_models/xgb_cls.pkl") -> None:
+    """Trains a new xgboost classifier for shot prediction
+
+    Args:
+        train_config (Annotated[str, typer.Option, optional): Hyperparameter configuration. Defaults to None.
+        save_path (Annotated[str, typer.Option, optional): Filepath to save trained model. Defaults to "saved_models/xgb_cls.pkl".
+    """
     df = load_data(DATASET_LOC)
     train_df, _ = stratify_split(df, df.SHOT_RESULT, 0.2)
     X_train, y_train = preprocess(train_df)

@@ -19,7 +19,12 @@ class ShotData(BaseModel):
 
 
 @app.get("/")
-def _index():
+def _index() -> dict:
+    """Default endpoint
+
+    Returns:
+        dict: Response
+    """
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
@@ -29,11 +34,16 @@ def _index():
 
 
 @app.post("/predict/")
-async def _predict(shot_data: ShotData):
+async def _predict(shot_data: ShotData) -> dict:
     shot_clock, dribbles, touch_time, shot_dist, pts_type, close_def_dist = convert_data_to_features(shot_data)
     results = predict.predict(
         shot_clock=shot_clock, dribbles=dribbles, touch_time=touch_time, shot_dist=shot_dist, pts_type=pts_type, close_def_dist=close_def_dist
     )
+    """Endpoint for serving the shot predictor model
+
+    Returns:
+        dict: Results dictionary
+    """
 
     return {"results": int(results[0])}
 

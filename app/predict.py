@@ -15,7 +15,20 @@ def predict(
     shot_dist: Annotated[float, typer.Option()],
     pts_type: Annotated[int, typer.Option()],
     close_def_dist: Annotated[float, typer.Option()],
-):
+) -> float:
+    """Uses pretrained model for predicting new instances
+
+    Args:
+        shot_clock (Annotated[float, typer.Option): Shot clock in seconds
+        dribbles (Annotated[int, typer.Option): Number of dribbles before shooting
+        touch_time (Annotated[float, typer.Option): Touch time before shooting in seconds
+        shot_dist (Annotated[float, typer.Option): Shot distances in meters
+        pts_type (Annotated[int, typer.Option): 2 if the shot is 2-pt and 3 if it is 3-pt
+        close_def_dist (Annotated[float, typer.Option): Distance of closest defender in meters
+
+    Returns:
+        float: 0.0 if missing shot, 1.0 if made shot
+    """
     # Load saved model
     model = load_model(SAVED_MODEL_LOC)
 

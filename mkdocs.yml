@@ -1,0 +1,23 @@
+site_name: Shot Predictor
+repo_url: https://github.com/argykets/basketball-analytics-app
+
+nav:
+  - Home: index.md
+  - app:
+    - data: app/data.md
+    - train: app/train.md
+    - tune: app/tune.md
+    - predict: app/predict.md
+    - serve: app/serve.md
+    - utils: app/utils.md
+
+theme: readthedocs
+
+plugins:
+  - search
+  - mkdocstrings:
+      watch:
+        - app/  # assuming your Python code is in the src directory
+
+watch:
+  - .  # reload docs for any file changes
