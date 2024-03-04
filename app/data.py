@@ -26,13 +26,14 @@ def stratify_split(df: pd.DataFrame, stratify: str, test_size: float, seed: int 
 
     Args:
         df (pd.DataFrame): Input data
-        stratify (str): Column name of target variable
+        stratify (np.array): Column of target variable
         test_size (float): Proportion of data
         seed (int, optional): Random seed. Defaults to 1234.
 
     Returns:
         Tuple[pd.DataFrame, pd.DataFrame]: Train and val dataframes
     """
+    print(stratify)
     train_df, val_df = train_test_split(df, stratify=stratify, test_size=test_size, random_state=seed)
     return train_df, val_df
 

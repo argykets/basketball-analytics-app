@@ -21,3 +21,4 @@ pre-commit
 mkdocs
 mkdocstrings
 mkdocstrings-python
+pytest
